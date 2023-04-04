@@ -1,6 +1,6 @@
 <html>
    <head>
-      <title>Ex- 6-2: CSS manipulation</title>
+      <title>Ex- 6-3: hide and show</title>
        <style>
            .charac {
                float: left;
@@ -9,25 +9,24 @@
               width: 200px; 
                height: 200px; 
            }
-           .styleclass {
-               border: 10px solid purple;
-               
-           }
       </style>
-    </head>
-      <script type = "text/javascript" 
+    <script type = "text/javascript" 
          src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
-      </script>
-
-     <script>
-          $(document).ready(function() {
-              $("button").click(function(){
-                  $("img").toggleClass("styleclass"); //change to toggleClass
-                  
+    </script>    
+    
+      <script>  
+       $(document).ready(function() {
+              $("#hide-btn").click(function(){
+                  $("img").hide();
               });
-          });
-          // Add removeClass()
-
+          
+                $("#show-btn").click(function(){
+                    $("img").show();
+                    
+                });
+           });
+          
+          
       </script>
 
 	
@@ -41,7 +40,8 @@
            <img src="img/Thomson_&_Thompson.png">
        </div>
        
-       <button>Try toggleClass()</button>
-       <!-- add button for remove class -->
+       <button id='hide-btn'>Hide</button>
+       <button id='show-btn'>Show</button>
+
    </body>
 </html>

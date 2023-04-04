@@ -16,6 +16,29 @@
             });
          });
       </script>
+       <script type = "text/javascript" language = "javascript">
+         $(document).ready(function() {
+            $("p:first").css('background-color', 'yellow');
+         });
+     
+        $(document).ready(function() {
+            $("button").click(function(){
+                $("ol").css('color', 'orange');
+            });
+         });
+      </script>
+       
+       <script>
+       var design = {
+           color:"White",
+           background:"grey"
+           border:"3px solid black"
+       }
+       
+       in console type: ("h1").css(design)
+       </script>
+        
+       
    </head>
 	
    <body>
@@ -28,7 +51,16 @@
            <li> jQuery </li>
        </ul>
        
+       
        <p id="test">Check console to get the text for list</p> 
        <button>Change list text color</button>
+       
+       <h1> My Favorite Car Companies. </h1>
+       <ol>
+           <li> Mercedes-Benz </li>
+           <li> Porsche </li>
+           <li> Ferrari </li>
+           <li> Rolls-Royce </li>
+       </ol>
     </body>
 </html>
