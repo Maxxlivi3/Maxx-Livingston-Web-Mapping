@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab 10</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+       <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+       
+   
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+    
+    <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: "whitesmoke";
+                font-family: "Noto Sans", sans-serif;
+                color: #3d3d3d;
+            }
+            #title {
+                position: fixed;
+                margin-top: 0;
+                top: 10px;
+                left: 50px;
+                font-size: 2em;
+                font-family: "Lora", serif;
+                letter-spacing: .04em;
+                padding: 10px 15px;
+                background-color: rgba(255, 255, 255, 0.5);
+                border: 1px solid grey;
+                border-radius: 3px;
+                z-index: 800;
+            }
+            #description h2 {
+                font-family: "Lora", serif;
+                letter-spacing: .04em;
+            }
+            #map {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: 100%;
+            }
+            #description {
+                position: fixed;
+                bottom: 20px;
+                left: 10px;
+                width: 280px;
+                padding: 0px 15px;
+                background-color: rgba(255, 255, 255, 0.7);
+                border: 1px solid grey;
+                border-radius: 3px;
+                z-index: 800;
+            }
+            #description p {
+                font-size: .9em;
+                line-height: 1.5em;
+            }
+            #description a {
+                color: #005daa;
+                text-decoration: none;
+            }
+            #description a:hover {
+                text-decoration: underline;
+            }
+        </style>
+</head>
+<body>
+        <h1 id="title">Lab 10:Client-side processing with Turf.JS</h1>
+        <div id="map"></div>
+        <div id="description">
+            <h2>About this assignment</h2>
+            <p>This Map uses turfJS to show the great circle distance and mid-point between two points. The points can be dragged and moved to any location.</p>
+           <p>Map authored by Maxx Livingston</p>
+        </div> 
+    <div id="map"></div>
+    <script>
+    
+
+var map = L.map("map").setView([40, -85], 4);
+        
+L.tileLayer(
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", 
+    {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}
+).addTo(map);
+
+
+var pnt_layer = L.layerGroup().addTo(map);
+var gc_layer = L.geoJSON().addTo(map);
+var midpoint = L.geoJSON().addTo(map);
+
+L.marker([27.61109, -100.33246], {draggable: true}).on("drag", drawGC).addTo(pnt_layer);
+L.marker([43.8781, -88.6298], {draggable: true}).on("drag", drawGC).addTo(pnt_layer);
+
+
+function drawGC() {
+    gc_layer.clearLayers();
+    midpoint.clearLayers();
+    points = pnt_layer.toGeoJSON();
+    var gc = turf.greatCircle(points.features[0], points.features[1]);
+    var mp = turf.midpoint(points.features[0], points.features[1]);
+    L.geoJSON(gc).addTo(gc_layer);
+    L.geoJSON(mp).addTo(midpoint);
+
+}
+drawGC();
+
+    </script>
+</body>
+</html>
