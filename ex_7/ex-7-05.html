@@ -26,7 +26,7 @@
     <script>
     
 // Bounds   long/lat
-var bounds = [-125.06804948750015, 48.423227753628424, -80.67187497957025, 25.34283898116232];
+var bounds = [-87.64484335076214, 41.872684954115385, -78.47783361067076, -0.19272806787629276];
     
 // Initialize map
 var mymap = L.map("map").fitBounds([[bounds[1], bounds[0]], [bounds[3], bounds[2]]]);
@@ -48,7 +48,10 @@ var greatCircle = turf.greatCircle(startp, endp);
 L.geoJSON(startp).addTo(mymap);     
 L.geoJSON(endp).addTo(mymap);     
 L.geoJSON(greatCircle).addTo(mymap);
-        
+var point1 = turf.point([144.834823, -37.771257]);
+var point2 = turf.point([145.14244, -37.830937]);
+
+var midpoint = turf.midpoint(point1, point2);        
 
     </script>
 </body>

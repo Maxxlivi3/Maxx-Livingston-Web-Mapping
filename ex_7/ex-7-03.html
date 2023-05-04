@@ -38,16 +38,29 @@ L.tileLayer(
 
 // Add draggable marker
 var marker = 
-    L.marker([48.42, -122.068], {draggable: true})
+    L.marker([48.42, -115.068], {draggable: true})
     .bindPopup("This marker is draggable! Move it around...")
     .addTo(mymap)
     .openPopup();
     
+var marker =
+    L.marker ([43.97, -99.813], {draggable: true})
+    .bindPopup("This marker is Draggable! move it around...")
+    .addTo(mymap)
+    .openPopup();
+        
+L.marker([37.91, -104.042], {draggable: true})
+    .bindPopup("This marker is draggable! Move it around...")
+    .addTo(mymap)
+    .openPopup();        
+        
 // Print current position
 marker.addEventListener("drag", function() {
      console.log(marker._latlng);
 }); 
-
+markerr.addEventListener("drag", function() {
+     console.log(marker._latlng);
+}); 
 
     </script>
 </body>
